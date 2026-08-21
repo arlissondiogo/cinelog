@@ -1,0 +1,328 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  background: #1C1712;
+}
+
+.pagina {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.card {
+  width: 420px;
+  max-width: 100%;
+  background: #241E17;
+  border: 1px solid #584B3E;
+  border-radius: 12px;
+  padding: 32px;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.card--expandida {
+  background: #3A3129;
+  border-color: #000000;
+}
+
+.marca {
+  margin: 0 0 12px;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+}
+
+.titulo {
+  margin: 0 0 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  letter-spacing: 0.16em;
+  color: #F2EDE3;
+}
+
+.subtitulo {
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.16em;
+  color: #B7AC9C;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rotulo {
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: #F2EDE3;
+  margin-bottom: 8px;
+}
+
+.rotulo--negrito {
+  font-weight: 700;
+}
+
+.campo {
+  width: 100%;
+  height: 55px;
+  padding: 0 14px;
+  margin-bottom: 20px;
+  background: #241E17;
+  border: 1px solid #3A3129;
+  border-radius: 8px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  color: #F2EDE3;
+}
+
+.campo::placeholder {
+  color: #584B3E;
+}
+
+.campo:disabled {
+  opacity: 0.7;
+}
+
+.campo:focus {
+  outline: 2px solid #E3A73E;
+  outline-offset: 1px;
+}
+
+.erro {
+  color: #E07A5F;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  margin: -8px 0 16px;
+}
+
+.botao {
+  height: 46px;
+  border: 0;
+  border-radius: 8px;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.botao--principal {
+  background: #E3A73E;
+  color: #1A1204;
+}
+
+.botao--principal:disabled {
+  background: #986E25;
+  color: #1A1204;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.botao--principal:not(:disabled):hover {
+  filter: brightness(1.08);
+}
+
+.secao-token {
+  margin-top: 28px;
+}
+
+.token-titulo {
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  color: #E3A73E;
+}
+
+.token-aviso {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0.16em;
+  color: #B7AC9C;
+}
+
+.token-caixa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 54px;
+  padding: 0 16px;
+  margin-bottom: 20px;
+  background: #433824;
+  border: 1px dashed #000000;
+  border-radius: 8px;
+}
+
+.token-valor {
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.botao-copiar {
+  flex-shrink: 0;
+  height: 24px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(227, 167, 62, 0.26);
+  color: #F2EDE3;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.confirmacao {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 11px;
+  line-height: 24px;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.confirmacao input[type='checkbox'] {
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: #E3A73E;
+  flex-shrink: 0;
+}
+
+.rodape {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: #F2EDE3;
+}
+
+.rodape a {
+  color: #E3A73E;
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Home (app shell) ===== */
+
+.app-shell {
+  min-height: 100vh;
+  background: #1C1712;
+  padding: 25px 40px 60px;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+}
+
+.marca-topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.busca {
+  flex: 1;
+  max-width: 525px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border: 2px solid #D1D5DB;
+  border-radius: 6px;
+}
+
+.busca input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.busca input::placeholder {
+  color: #B7AC9C;
+}
+
+.botao-usuario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.topo-divisor {
+  height: 1px;
+  background: #433824;
+  margin-bottom: 28px;
+}
+
+.acoes-topo {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 60px;
+}
+
+.botao--compacto {
+  width: 194px;
+  font-weight: 700;
+}
+
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  max-width: 500px;
+  margin: 40px auto 0;
+}
+
+.vazio-titulo {
+  margin: 8px 0 0;
+  font-size: 20px;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+}
+
+.vazio-texto {
+  margin: 0 0 12px;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: #B7AC9C;
+}
+
+.vazio .botao--principal {
+  width: 280px;
+}

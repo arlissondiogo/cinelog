@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
+import { fazerLogin } from "../services/api";
 
-function Login({ usuarios, onLogin }) {
+function Login({ onLogin }) {
   const [token, setToken] = useState("");
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setErro("");
 
@@ -17,17 +18,15 @@ function Login({ usuarios, onLogin }) {
     }
 
     setCarregando(true);
-
-    setTimeout(() => {
-      const usuario = usuarios.find((u) => u.token === token.trim());
-      if (!usuario) {
-        setErro("Token inválido.");
-        setCarregando(false);
-        return;
-      }
-      onLogin(usuario);
+    try {
+      const usuario = await fazerLogin(token.trim());
+      onLogin({ ...usuario, token: token.trim() });
       navigate("/home");
-    }, 800);
+    } catch (err) {
+      setErro(err.message);
+    } finally {
+      setCarregando(false);
+    }
   }
 
   return (

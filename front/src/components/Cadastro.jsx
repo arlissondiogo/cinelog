@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router";
-import { gerarToken } from "../data/usuarios";
+import { cadastrarUsuario } from "../services/api";
 
-function Cadastro({ usuarios, onCadastrar }) {
+function Cadastro() {
   const [etapa, setEtapa] = useState("form");
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -10,9 +10,10 @@ function Cadastro({ usuarios, onCadastrar }) {
   const [token, setToken] = useState("");
   const [tokenConfirmado, setTokenConfirmado] = useState(false);
   const [copiado, setCopiado] = useState(false);
+  const [carregando, setCarregando] = useState(false);
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setErro("");
 
@@ -20,15 +21,17 @@ function Cadastro({ usuarios, onCadastrar }) {
       setErro("Preencha todos os campos.");
       return;
     }
-    if (usuarios.some((u) => u.email === email)) {
-      setErro("Este e-mail já está cadastrado.");
-      return;
-    }
 
-    const novoToken = gerarToken();
-    onCadastrar({ nome, email, token: novoToken });
-    setToken(novoToken);
-    setEtapa("token");
+    setCarregando(true);
+    try {
+      const usuario = await cadastrarUsuario({ nome: nome.trim(), email: email.trim() });
+      setToken(usuario.token);
+      setEtapa("token");
+    } catch (err) {
+      setErro(err.message);
+    } finally {
+      setCarregando(false);
+    }
   }
 
   function handleCopiar() {
@@ -60,7 +63,7 @@ function Cadastro({ usuarios, onCadastrar }) {
           placeholder="Como podemos te chamar?"
           value={nome}
           onChange={(e) => setNome(e.target.value)}
-          disabled={etapa === "token"}
+          disabled={etapa === "token" || carregando}
         />
 
         <label className="rotulo" htmlFor="email">
@@ -72,14 +75,14 @@ function Cadastro({ usuarios, onCadastrar }) {
           placeholder="voce@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          disabled={etapa === "token"}
+          disabled={etapa === "token" || carregando}
         />
 
         {erro && <p className="erro">{erro}</p>}
 
         {etapa === "form" && (
-          <button type="submit" className="botao botao--principal">
-            Cadastrar
+          <button type="submit" className="botao botao--principal" disabled={carregando}>
+            {carregando ? "Cadastrando..." : "Cadastrar"}
           </button>
         )}
       </form>

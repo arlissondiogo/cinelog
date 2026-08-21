@@ -1,0 +1,42 @@
+# ===== Dependências =====
+node_modules/
+front/node_modules/
+back/node_modules/
+
+# ===== Build / dist =====
+dist/
+dist-ssr/
+front/dist/
+back/dist/
+*.local
+
+# ===== Variáveis de ambiente =====
+.env
+.env.local
+.env.*.local
+
+# ===== Banco de dados (backend) =====
+back/banco.db
+back/*.db
+back/*.db-journal
+back/*.sqlite
+back/*.sqlite3
+
+# ===== Logs =====
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# ===== Editor / SO =====
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===== Cache =====
+.cache/
+.vite/
